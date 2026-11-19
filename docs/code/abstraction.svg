@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" role="img" aria-label="de-armor coding route: abstraction decision - extract, parameterize, adapt, or keep separate">
+  <defs>
+    <style>
+      text { white-space: pre; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace; }
+      .flow { stroke-dasharray: 6 8; animation: dash 1.2s linear infinite; }
+      @keyframes dash { to { stroke-dashoffset: -28; } }
+      .pulse { animation: pulse 2.4s ease-in-out infinite; }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+      @media (prefers-reduced-motion: reduce) { .flow, .pulse { animation: none; } }
+    </style>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#050816"/>
+      <stop offset="0.6" stop-color="#0a0f2c"/>
+      <stop offset="1" stop-color="#140a2c"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.5" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#e879f9"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e293b" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0.6"/>
+    </linearGradient>
+    <radialGradient id="glowC" cx="0.8" cy="0.3" r="0.45">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowM" cx="0.45" cy="0.85" r="0.45">
+      <stop offset="0" stop-color="#f472b6" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#f472b6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155"/>
+    </pattern>
+    <pattern id="hazard" width="18" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="9" height="18" fill="#f472b6" opacity="0.1"/>
+    </pattern>
+    <filter id="glow" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrowM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#f472b6"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="500" fill="url(#bg)"/>
+  <rect width="1200" height="500" fill="url(#dots)" opacity="0.5"/>
+  <rect width="1200" height="500" fill="url(#glowC)"/>
+  <rect width="1200" height="500" fill="url(#glowM)"/>
+
+  <g class="mono">
+    <text x="40" y="50" fill="#67e8f9" font-size="13" letter-spacing="4">// ABSTRACTION</text>
+    <text x="40" y="76" fill="#94a3b8" font-size="14">Based on existing callers, never on the future.</text>
+  </g>
+
+  <g class="mono">
+    <rect x="40" y="110" width="300" height="110" rx="14" fill="url(#glass)" stroke="#475569"/>
+    <text x="60" y="140" fill="#67e8f9" font-size="12" letter-spacing="3">INPUT</text>
+    <text x="60" y="170" fill="#f8fafc" font-size="18" font-weight="700">Similar code found</text>
+    <text x="60" y="194" fill="#94a3b8" font-size="12.5">by the step 1 search,</text>
+    <text x="60" y="212" fill="#94a3b8" font-size="12.5">about to write it again</text>
+  </g>
+
+  <path class="flow" d="M340 165H394" stroke="#a5b4fc" stroke-width="2" fill="none" marker-end="url(#arrowC)"/>
+
+  <path d="M430 96H770L800 165L770 234H430L400 165Z" fill="url(#glass)" stroke="url(#neon)" stroke-width="2" filter="url(#glow)"/>
+  <g class="mono">
+    <text x="448" y="128" fill="url(#neon)" font-size="13" font-weight="700" letter-spacing="3">SAME MEANING?</text>
+    <text x="448" y="160" fill="#e2e8f0" font-size="15">If one changes for a business</text>
+    <text x="448" y="182" fill="#e2e8f0" font-size="15">reason, must the other change</text>
+    <text x="448" y="204" fill="#e2e8f0" font-size="15">too?</text>
+  </g>
+
+  <g fill="none" stroke="#22d3ee" stroke-width="2">
+    <path class="flow" d="M800 165H830M830 110V250M830 110H856M830 180H856M830 250H856"/>
+  </g>
+  <circle class="pulse" cx="830" cy="165" r="4" fill="#67e8f9" filter="url(#glow)"/>
+  <text class="mono" x="799" y="188" fill="#67e8f9" font-size="12" font-weight="700" letter-spacing="1">YES</text>
+
+  <g class="mono">
+    <rect x="860" y="82" width="300" height="56" rx="10" fill="url(#glass)" stroke="#22d3ee" stroke-opacity="0.7"/>
+    <text x="876" y="106" fill="#e0f2fe" font-size="14" font-weight="700">1 copy exists  -&gt; <tspan fill="#67e8f9">EXTRACT</tspan></text>
+    <text x="876" y="126" fill="#94a3b8" font-size="12">shared module, update callers</text>
+
+    <rect x="860" y="152" width="300" height="56" rx="10" fill="url(#glass)" stroke="#22d3ee" stroke-opacity="0.7"/>
+    <text x="876" y="176" fill="#e0f2fe" font-size="14" font-weight="700">2+ variants -&gt; <tspan fill="#67e8f9">PARAMETERIZE</tspan></text>
+    <text x="876" y="196" fill="#94a3b8" font-size="12">params cover seen differences</text>
+
+    <rect x="860" y="222" width="300" height="56" rx="10" fill="url(#glass)" stroke="#22d3ee" stroke-opacity="0.7"/>
+    <text x="876" y="246" fill="#e0f2fe" font-size="14" font-weight="700">Almost fits  -&gt; <tspan fill="#67e8f9">ADAPT</tspan></text>
+    <text x="876" y="266" fill="#94a3b8" font-size="12">small change to the existing one</text>
+  </g>
+
+  <path class="flow" d="M600 234V286" stroke="#f472b6" stroke-width="2" fill="none" marker-end="url(#arrowM)"/>
+  <text class="mono" x="612" y="266" fill="#f472b6" font-size="12" font-weight="700" letter-spacing="2">NO</text>
+
+  <g class="mono">
+    <rect x="420" y="292" width="360" height="70" rx="12" fill="url(#glass)" stroke="#f472b6" stroke-opacity="0.8" filter="url(#glow)"/>
+    <text x="440" y="322" fill="#fce7f3" font-size="15" font-weight="700">Coincidental -&gt; <tspan fill="#f472b6">KEEP SEPARATE</tspan></text>
+    <text x="440" y="346" fill="#c9a9bd" font-size="12.5">merging would couple two domains</text>
+  </g>
+
+  <g class="mono">
+    <rect x="40" y="398" width="1120" height="70" rx="12" fill="#14091a"/>
+    <rect x="40" y="398" width="1120" height="70" rx="12" fill="url(#hazard)" stroke="#f472b6" stroke-opacity="0.55"/>
+    <text x="62" y="426" fill="#f472b6" font-size="13" font-weight="700" letter-spacing="3">NEVER ABSTRACT WHEN</text>
+    <text x="62" y="452" fill="#e9d5ff" font-size="13.5">only one implementation  /  only one caller  /  the reason is "might need it later"</text>
+  </g>
+
+  <rect x="0" y="496" width="1200" height="4" fill="url(#neon)"/>
+</svg>

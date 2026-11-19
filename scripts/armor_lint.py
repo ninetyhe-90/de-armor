@@ -8,7 +8,7 @@ import re
 import sys
 import unicodedata
 
-VERSION = "2.1.2"
+VERSION = "2.2.0"
 MAX_BYTES = 1_000_000
 KINDS = {"fact", "condition", "uncertainty", "boundary", "output"}
 RULES = [

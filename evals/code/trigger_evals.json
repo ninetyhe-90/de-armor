@@ -1,0 +1,90 @@
+[
+  {
+    "query": "订单导出那块帮我加个 createdAt 字段，格式 YYYY-MM-DD",
+    "should_trigger": true
+  },
+  {
+    "query": "这个 Go 服务的 Sum 函数算错了，帮我修一下",
+    "should_trigger": true
+  },
+  {
+    "query": "写个 python 脚本把 logs/ 下面的 json 日志按天合并",
+    "should_trigger": true
+  },
+  {
+    "query": "UserService 里那堆 try catch 太乱了，重构一下，简单点",
+    "should_trigger": true
+  },
+  {
+    "query": "给 /api/orders 加一个分页参数，后端是 spring boot",
+    "should_trigger": true
+  },
+  {
+    "query": "用 C++ 实现一个线程安全的 LRU 缓存",
+    "should_trigger": true
+  },
+  {
+    "query": "这段 node 代码到处都是 || {}，帮我改掉",
+    "should_trigger": true
+  },
+  {
+    "query": "别过度设计，直接用项目里已有的 http 封装调一下支付接口",
+    "should_trigger": true
+  },
+  {
+    "query": "这三个 handler 里分页逻辑都是复制的，抽一下公共方法",
+    "should_trigger": true
+  },
+  {
+    "query": "破甲",
+    "should_trigger": true
+  },
+  {
+    "query": "这个回答太绕了，说人话",
+    "should_trigger": true
+  },
+  {
+    "query": "别给我一堆免责声明，直接给方案，保留事实和条件",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我审一下这段回复，删掉套话但别丢风险",
+    "should_trigger": true
+  },
+  {
+    "query": "先帮我看看这个仓库的目录结构是怎么分层的，讲给我听",
+    "should_trigger": false
+  },
+  {
+    "query": "解释一下这段代码在做什么，不用改",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我根据 git diff 写一条 commit message",
+    "should_trigger": false
+  },
+  {
+    "query": "gofmt 和 goimports 有什么区别",
+    "should_trigger": false
+  },
+  {
+    "query": "写一篇介绍 YAGNI 原则的博客",
+    "should_trigger": false
+  },
+  {
+    "query": "把这个 PDF 合同转成 word",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我把 agent 部署到测试环境",
+    "should_trigger": false
+  },
+  {
+    "query": "清理一下我本机装的 skill，哪些没用",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我推荐一台 5000 元左右的笔记本",
+    "should_trigger": false
+  }
+]

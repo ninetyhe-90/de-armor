@@ -1,0 +1,122 @@
+{
+  "skill_name": "de-armor (code route)",
+  "evals": [
+    {
+      "id": 1,
+      "name": "reuse-existing-date-helper-node",
+      "prompt": "给 src/export/order.js 的 toRows 加一列 createdAt，订单对象里的 createdAt 是 Date，导出成 YYYY-MM-DD。",
+      "expected_output": "复用 src/utils/date.js 的 formatDate，只改 toRows，并用 node 实际跑一次给出输出。",
+      "files": [
+        "evals/code/files/reuse-node"
+      ],
+      "assertions": [
+        "src/export/order.js 引入并调用了 src/utils/date.js 的 formatDate",
+        "没有新增任何日期格式化函数或手写 getFullYear/padStart 逻辑",
+        "src/utils/date.js 与 package.json 未被修改",
+        "回复中的完成结论附带了本轮 node 命令的实际输出"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "no-silent-default-python",
+      "prompt": "写一个 Python 函数，读取 config.json 里的 db.host 和 db.port，返回 (host, port)。",
+      "expected_output": "缺字段直接抛错，不填默认值；符合 PEP 8 与类型注解。",
+      "files": [],
+      "assertions": [
+        "缺少 db、host 或 port 时抛出异常，没有 .get(..., 'localhost') 之类的默认值",
+        "没有 try/except 后 pass 或返回 None",
+        "使用 json.load 读取，没有 eval 或 pickle",
+        "函数名为 snake_case 且带类型注解"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "bugfix-root-cause-go",
+      "prompt": "Sum([]int{1, 2, 3}) 返回 3，应该是 6，帮我修一下。",
+      "expected_output": "先写复现测试并看到失败，再修循环边界，go test 通过，gofmt 干净。",
+      "files": [
+        "evals/code/files/bug-go"
+      ],
+      "assertions": [
+        "修复前新增了能复现问题的测试，并展示了它失败的输出",
+        "修复位置是 sum.go 的循环边界，没有在调用方或返回值上补偿",
+        "回复附带修复后 go test 通过的实际输出",
+        "gofmt -l 对改动文件无输出"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "surgical-change-java",
+      "prompt": "把 PriceCalculator 的折扣率从 0.9 改成 0.85。",
+      "expected_output": "diff 只有常量那一行；不重排格式，不删除未使用的 legacyRound，可在回复中提及。",
+      "files": [
+        "evals/code/files/surgical-java"
+      ],
+      "assertions": [
+        "diff 只修改了 DISCOUNT_RATE 所在的一行",
+        "discount 方法原有的排版（如 price*DISCOUNT_RATE）未被改动",
+        "legacyRound 方法未被删除",
+        "如提到 legacyRound，只作为提示，不擅自处理"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "security-floor-without-over-defense-node",
+      "prompt": "用 express 和 mysql2 写一个 GET /users/:id，登录用户只能查自己的信息，返回 id、name、email。",
+      "expected_output": "参数绑定、归属校验、凭据取自环境变量；错误不被吞掉，也不在每层重复校验。",
+      "files": [],
+      "assertions": [
+        "SQL 使用占位符参数绑定，没有字符串拼接",
+        "校验 req.params.id 与当前登录用户一致，不一致返回 403",
+        "数据库凭据来自 process.env，代码中没有硬编码",
+        "没有 catch 后返回空对象或 200 的静默降级",
+        "使用 node: 前缀导入内置模块（如有），并用 const 声明"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "official-style-cpp",
+      "prompt": "用 C++17 写一个函数，读取文本文件的所有行并返回。",
+      "expected_output": "RAII、按值返回容器、打不开文件时抛异常。",
+      "files": [],
+      "assertions": [
+        "用 std::ifstream 管理文件，没有 fopen/fclose 或 new/delete",
+        "返回 std::vector<std::string>，没有输出参数",
+        "文件打不开时抛出异常，而不是返回空容器",
+        "参数按 const std::string& 或 std::filesystem::path 传递"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "extract-shared-logic-python",
+      "prompt": "注册的时候也要校验邮箱格式，规则跟开票那边一样。",
+      "expected_output": "给出结构速览；把 invoice.py 里的内联邮箱校验提取到 app/common/ 下，invoice 与 signup 都调用它；原有测试和新增测试本轮都通过。",
+      "files": [
+        "evals/code/files/extract-python"
+      ],
+      "assertions": [
+        "回复中给出了结构速览，并指出 app/common/ 是公共代码位置",
+        "邮箱校验被提取为 app/common/ 下一个以业务语义命名的函数（如 validate_email）",
+        "app/billing/invoice.py 与 app/users/signup.py 都调用这个函数，正则在项目中只出现一次",
+        "没有新建接口、基类或校验器框架",
+        "invoice.py 除替换校验那段外没有其他改动",
+        "回复附带本轮 python3 -m unittest 的实际输出，原有测试与新增的 signup 测试都通过"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "keep-coincidental-duplication-node",
+      "prompt": "优惠码现在要允许小写字母了，改一下校验。",
+      "expected_output": "只改 src/promo/coupon.js 的正则；SKU 校验保持不变，不把两者合并成公共函数。",
+      "files": [
+        "evals/code/files/coincidental-node"
+      ],
+      "assertions": [
+        "只修改了 src/promo/coupon.js",
+        "src/catalog/sku.js 未被修改，仍只接受大写",
+        "没有新建公共校验模块，也没有让 isValidCoupon 与 isValidSku 共用同一个函数",
+        "回复附带本轮 node 命令验证小写优惠码通过、SKU 小写仍不通过的实际输出"
+      ]
+    }
+  ]
+}
